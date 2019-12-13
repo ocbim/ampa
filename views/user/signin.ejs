@@ -1,0 +1,22 @@
+<% include ../layout/header %>
+<div class="container mt-4 row">
+    <div class="col"></div>
+    <div class="col-md-6">
+        <form action="/" method="post">
+            <div class="card">
+                <div class="card-header">
+                    <span class=" fas fa-user-plus">Registro</span>
+                </div>
+                <div class="card-body container">
+                    <input type="text" name="nombre" placeholder="Nombre" class="form-control">
+                    <input type="text" name="apellidos" placeholder="Apellidos" class="form-control mt-2">
+                    <input type="text" name="email" placeholder="Email" class="form-control mt-2">
+                    <input type="password" name="password" placeholder="Password" class="form-control mt-2">
+                    <button type="submit" class="btn btn-primary mt-2 btn-block">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col"></div>
+</div>
+<% include ../layout/footer %>
