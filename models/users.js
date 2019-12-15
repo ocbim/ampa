@@ -1,8 +1,11 @@
 const mongoose = require('../config/db');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-node');
 
-
+/**
+ * @author Oscar Calvo Batista
+ * 
+ */
 let userSchema = new Schema({
 	nombre: { type: String, lowercase: true },
 	apellidos: { type: String, lowercase: true },
@@ -14,21 +17,18 @@ let userSchema = new Schema({
 
 
 userSchema.pre('save', function (next) {
-	var user = this
-	if (!user.isModified('password')) return next();
+	
+	if (!this.isModified('password')) return next();
 
 	bcrypt.genSalt(4, (err, salt)=>{
 		if (err){ return next(err);}
 		console.log(`Esta es la salt ${salt}`);
-		bcrypt.hash(user.password, salt,(err, hash)=>{
+		bcrypt.hash(this.password, salt,null, (err, hash)=>{
 			if (err){ return next(err);}
-			user.password = hash
-			this.password= hash
+			this.password = hash
 		});
 	});
 	next();
-	console.log(`Este es el user.password ${user.password}`);
-	console.log(`Este es el this.password ${this.password}`);
 });
 
 userSchema.methods.compararPassword = function (password, cb) {
