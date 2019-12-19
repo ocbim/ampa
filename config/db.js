@@ -1,3 +1,4 @@
+'use stritc';
 const mongoose = require('mongoose');
 const config = require('./config');
 
@@ -7,11 +8,11 @@ const config = require('./config');
  * 
  */
 mongoose.connect(config.urlDB, config.opcionUrlDB)
-  .then(()=>{
-    console.log('La coneccion a la DB ha sido satisfactoria.')
-  })
-  .catch((error)=>{
-    console.log(`Error en la coneccion: ${error}`)
-  });
+    .then(() => {
+        console.log('La coneccion a la DB ha sido satisfactoria.')
+    })
+    .catch((error) => {
+        console.log(`Error en la coneccion: ${error}`)
+    });
 
 module.exports = mongoose;
